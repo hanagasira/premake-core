@@ -40,7 +40,7 @@
 		configurations { "Debug", "Release" }
 	end
 
-	
+
 	function suite.teardown()
 		api.unregister "testsuiteflags"
 	end

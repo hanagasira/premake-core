@@ -40,14 +40,14 @@
 
 	function suite.projects_onSingleProject()
 		wks.projects = {}
-		
+
 		project "TestProject"
 		kind "ConsoleApp"
 		files { "main.cpp" }
-		
+
 		wks = prepare()
 		wks_module.projects(wks)
-		
+
 		test.capture [[
 subninja TestProject.ninja
 		]]
@@ -60,18 +60,18 @@ subninja TestProject.ninja
 
 	function suite.projects_onMultipleProjects()
 		wks.projects = {}
-		
+
 		project "ProjectA"
 		kind "ConsoleApp"
 		files { "a.cpp" }
-		
+
 		project "ProjectB"
 		kind "StaticLib"
 		files { "b.cpp" }
-		
+
 		wks = prepare()
 		wks_module.projects(wks)
-		
+
 		test.capture [[
 subninja ProjectA.ninja
 subninja ProjectB.ninja
@@ -89,14 +89,14 @@ subninja ProjectB.ninja
 
 	function suite.defaultTarget_onSingleProject()
 		wks.projects = {}
-		
+
 		project "TestProject"
 		kind "ConsoleApp"
 		files { "main.cpp" }
-		
+
 		wks = prepare()
 		wks_module.defaultTarget(wks)
-		
+
 		test.capture [[
 
 # Default build target
@@ -111,18 +111,18 @@ default TestProject_Debug
 
 	function suite.defaultTarget_onMultipleProjects()
 		wks.projects = {}
-		
+
 		project "ProjectA"
 		kind "ConsoleApp"
 		files { "a.cpp" }
-		
+
 		project "ProjectB"
 		kind "ConsoleApp"
 		files { "b.cpp" }
-		
+
 		wks = prepare()
 		wks_module.defaultTarget(wks)
-		
+
 		test.capture [[
 
 # Default build target
@@ -140,18 +140,18 @@ default ProjectA_Debug ProjectB_Debug
 		local wks2 = workspace "TestWorkspace2"
 		configurations { "Debug", "Release" }
 		startproject "ProjectB"
-		
+
 		project "ProjectA"
 		kind "ConsoleApp"
 		files { "a.cpp" }
-		
+
 		project "ProjectB"
 		kind "ConsoleApp"
 		files { "b.cpp" }
-		
+
 		wks2 = test.getWorkspace(wks2)
 		wks_module.defaultTarget(wks2)
-		
+
 		test.capture [[
 
 # Default build target
@@ -170,14 +170,14 @@ default ProjectB_Debug
 		configurations { "Debug", "Release" }
 		platforms { "x86", "x64" }
 		defaultplatform "x64"
-		
+
 		project "TestProject"
 		kind "ConsoleApp"
 		files { "main.cpp" }
-		
+
 		wks2 = test.getWorkspace(wks2)
 		wks_module.defaultTarget(wks2)
-		
+
 		test.capture [[
 
 # Default build target
@@ -197,18 +197,18 @@ default TestProject_Debug_x64
 		platforms { "x86", "x64" }
 		defaultplatform "x64"
 		startproject "ProjectB"
-		
+
 		project "ProjectA"
 		kind "ConsoleApp"
 		files { "a.cpp" }
-		
+
 		project "ProjectB"
 		kind "ConsoleApp"
 		files { "b.cpp" }
-		
+
 		wks2 = test.getWorkspace(wks2)
 		wks_module.defaultTarget(wks2)
-		
+
 		test.capture [[
 
 # Default build target
@@ -223,16 +223,16 @@ default ProjectB_Debug_x64
 
 	function suite.defaultTarget_onMultipleConfigs()
 		wks.projects = {}
-		
+
 		configurations { "Debug", "Release", "Profile" }
-		
+
 		project "TestProject"
 		kind "ConsoleApp"
 		files { "main.cpp" }
-		
+
 		wks = prepare()
 		wks_module.defaultTarget(wks)
-		
+
 		test.capture [[
 
 # Default build target
@@ -353,14 +353,14 @@ default TestProject_Debug_x64
 		local wks2 = workspace "TestWorkspace4"
 		configurations { "Debug", "Release" }
 		platforms { "x86", "x64" }
-		
+
 		project "TestProject"
 		kind "ConsoleApp"
 		files { "main.cpp" }
-		
+
 		wks2 = test.getWorkspace(wks2)
 		wks_module.defaultTarget(wks2)
-		
+
 		test.capture [[
 
 # Default build target
@@ -379,18 +379,18 @@ default TestProject_Debug_x64
 
 	function suite.phonyAll_onMultipleProjects()
 		wks.projects = {}
-		
+
 		project "ProjectA"
 		kind "ConsoleApp"
 		files { "a.cpp" }
-		
+
 		project "ProjectB"
 		kind "ConsoleApp"
 		files { "b.cpp" }
-		
+
 		wks = prepare()
 		wks_module.phonyAll(wks)
-		
+
 		test.capture [[
 build all: phony
   build ProjectA: phony

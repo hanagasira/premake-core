@@ -42,25 +42,25 @@
 		kind "ConsoleApp"
 		files { "main.cpp", "shader.glsl" }
 		_OS = "linux"
-		
+
 		filter "files:**.glsl"
 			buildcommands { "glslc %{file.relpath} -o %{cfg.objdir}/%{file.basename}.spv" }
 			buildoutputs { "%{cfg.objdir}/%{file.basename}.spv" }
 		filter {}
-		
+
 		local cfg = prepare()
 		-- Create a mock file config
 		local filecfg = {
 			buildcommands = { "glslc shader.glsl -o obj/Debug/shader.spv" },
 			buildoutputs = { "obj/Debug/shader.spv" },
 		}
-		
+
 		local node = {
 			abspath = path.join(cfg.project.basedir, "shader.glsl")
 		}
-		
+
 		local outputs = cpp.buildCustomFile(cfg, node, filecfg)
-		
+
 		test.isnotnil(outputs)
 		test.isequal(1, #outputs)
 		test.capture [[
@@ -78,26 +78,26 @@ build obj/Debug/shader.spv: custom shader.glsl
 		kind "ConsoleApp"
 		files { "main.cpp", "data.txt" }
 		_OS = "linux"
-		
+
 		filter "files:**.txt"
 			buildmessage "Processing %{file.name}"
 			buildcommands { "cat %{file.relpath} | wc -l > %{cfg.objdir}/%{file.basename}.count" }
 			buildoutputs { "%{cfg.objdir}/%{file.basename}.count" }
 		filter {}
-		
+
 		local cfg = prepare()
 		local filecfg = {
 			buildcommands = { "cat data.txt | wc -l > obj/Debug/data.count" },
 			buildoutputs = { "obj/Debug/data.count" },
 			buildmessage = "Processing data.txt"
 		}
-		
+
 		local node = {
 			abspath = path.join(cfg.project.basedir, "data.txt")
 		}
-		
+
 		local outputs = cpp.buildCustomFile(cfg, node, filecfg)
-		
+
 		test.isnotnil(outputs)
 		test.capture [[
 build obj/Debug/data.count: custom data.txt
@@ -115,24 +115,24 @@ build obj/Debug/data.count: custom data.txt
 		kind "ConsoleApp"
 		files { "main.cpp", "resource.rc" }
 		_OS = "linux"
-		
+
 		filter "files:**.rc"
 			buildcommands { "rcc %{file.relpath} -o %{cfg.objdir}/%{file.basename}.h %{cfg.objdir}/%{file.basename}.cpp" }
 			buildoutputs { "%{cfg.objdir}/%{file.basename}.h", "%{cfg.objdir}/%{file.basename}.cpp" }
 		filter {}
-		
+
 		local cfg = prepare()
 		local filecfg = {
 			buildcommands = { "rcc resource.rc -o obj/Debug/resource.h obj/Debug/resource.cpp" },
 			buildoutputs = { "obj/Debug/resource.h", "obj/Debug/resource.cpp" }
 		}
-		
+
 		local node = {
 			abspath = path.join(cfg.project.basedir, "resource.rc")
 		}
-		
+
 		local outputs = cpp.buildCustomFile(cfg, node, filecfg)
-		
+
 		test.isnotnil(outputs)
 		test.isequal(2, #outputs)
 		test.capture [[
@@ -150,20 +150,20 @@ build obj/Debug/resource.h obj/Debug/resource.cpp: custom resource.rc
 		kind "ConsoleApp"
 		files { "main.cpp", "template.txt" }
 		_OS = "linux"
-		
+
 		local cfg = prepare()
 		local filecfg = {
 			buildcommands = { "generate template.txt config.ini -o obj/Debug/template.out" },
 			buildoutputs = { "obj/Debug/template.out" },
 			buildinputs = { "config.ini" }  -- Use buildinputs instead of builddependencies
 		}
-		
+
 		local node = {
 			abspath = path.join(cfg.project.basedir, "template.txt")
 		}
-		
+
 		local outputs = cpp.buildCustomFile(cfg, node, filecfg)
-		
+
 		test.isnotnil(outputs)
 		test.capture [[
 build obj/Debug/template.out: custom template.txt | config.ini
@@ -180,30 +180,30 @@ build obj/Debug/template.out: custom template.txt | config.ini
 		kind "ConsoleApp"
 		files { "main.cpp", "script.lua" }
 		_OS = "linux"
-		
+
 		filter "files:**.lua"
-			buildcommands { 
+			buildcommands {
 				"luac -o %{cfg.objdir}/%{file.basename}.luac %{file.relpath}",
 				"bin2c %{cfg.objdir}/%{file.basename}.luac > %{cfg.objdir}/%{file.basename}.c"
 			}
 			buildoutputs { "%{cfg.objdir}/%{file.basename}.c" }
 		filter {}
-		
+
 		local cfg = prepare()
 		local filecfg = {
-			buildcommands = { 
+			buildcommands = {
 				"luac -o obj/Debug/script.luac script.lua",
 				"bin2c obj/Debug/script.luac > obj/Debug/script.c"
 			},
 			buildoutputs = { "obj/Debug/script.c" }
 		}
-		
+
 		local node = {
 			abspath = path.join(cfg.project.basedir, "script.lua")
 		}
-		
+
 		local outputs = cpp.buildCustomFile(cfg, node, filecfg)
-		
+
 		test.isnotnil(outputs)
 		test.capture [[
 build obj/Debug/script.c: custom script.lua
@@ -219,16 +219,16 @@ build obj/Debug/script.c: custom script.lua
 		toolset "gcc"
 		kind "ConsoleApp"
 		files { "main.cpp" }
-		
+
 		local cfg = prepare()
 		local filecfg = {}
-		
+
 		local node = {
 			abspath = path.join(cfg.project.basedir, "main.cpp")
 		}
-		
+
 		local outputs = cpp.buildCustomFile(cfg, node, filecfg)
-		
+
 		test.isnil(outputs)
 	end
 
@@ -243,15 +243,15 @@ build obj/Debug/script.c: custom script.lua
 		kind "ConsoleApp"
 		files { "main.cpp", "src/main.cpp.in" }
 		_OS = "linux"
-		
+
 		filter "files:**.in"
 			buildmessage "copy %{file.relpath}"
 			buildoutputs { "main.cpp" }
 			buildcommands { "cp %{file.relpath} main.cpp" }
 		filter {}
-		
+
 		local cfg = prepare()
-		
+
 		-- Simulate first configuration - should generate build rule
 		local outputTracking = {}
 		local filecfg = {
@@ -259,13 +259,13 @@ build obj/Debug/script.c: custom script.lua
 			buildoutputs = { "main.cpp" },
 			buildmessage = "copy src/main.cpp.in"
 		}
-		
+
 		local node = {
 			abspath = path.join(cfg.project.basedir, "src/main.cpp.in")
 		}
-		
+
 		local outputs = cpp.buildCustomFile(cfg, node, filecfg, outputTracking)
-		
+
 		test.isnotnil(outputs)
 		test.isequal(1, #outputs)
 		test.isequal("main.cpp", outputs[1])
@@ -285,33 +285,33 @@ build main.cpp: custom src/main.cpp.in
 		toolset "gcc"
 		kind "ConsoleApp"
 		files { "main.cpp", "src/main.cpp.in" }
-		
+
 		filter "files:**.in"
 			buildmessage "copy %{file.relpath}"
 			buildoutputs { "main.cpp" }
 			buildcommands { "cp %{file.relpath} main.cpp" }
 		filter {}
-		
+
 		local cfg = prepare()
-		
+
 		-- Simulate second configuration with same output
 		-- outputTracking already has main.cpp from first config
 		local outputTracking = {
 			["main.cpp"] = { "MyProject_Debug" }
 		}
-		
+
 		local filecfg = {
 			buildcommands = { "cp src/main.cpp.in main.cpp" },
 			buildoutputs = { "main.cpp" },
 			buildmessage = "copy src/main.cpp.in"
 		}
-		
+
 		local node = {
 			abspath = path.join(cfg.project.basedir, "src/main.cpp.in")
 		}
-		
+
 		local outputs = cpp.buildCustomFile(cfg, node, filecfg, outputTracking)
-		
+
 		-- Should return outputs but not generate build rule
 		test.isnotnil(outputs)
 		test.isequal(1, #outputs)
@@ -329,25 +329,25 @@ build main.cpp: custom src/main.cpp.in
 		toolset "gcc"
 		kind "ConsoleApp"
 		files { "resource.rc" }
-		
+
 		local cfg = prepare()
-		
+
 		-- Simulate second configuration where one output is duplicate
 		local outputTracking = {
 			["obj/Debug/resource.h"] = { "MyProject_Debug" }
 		}
-		
+
 		local filecfg = {
 			buildcommands = { "rcc resource.rc -o obj/Debug/resource.h obj/Debug/resource.cpp" },
 			buildoutputs = { "obj/Debug/resource.h", "obj/Debug/resource.cpp" }
 		}
-		
+
 		local node = {
 			abspath = path.join(cfg.project.basedir, "resource.rc")
 		}
-		
+
 		local outputs = cpp.buildCustomFile(cfg, node, filecfg, outputTracking)
-		
+
 		test.isnotnil(outputs)
 		test.isequal(2, #outputs)
 		-- Should return actual output paths

@@ -10,7 +10,7 @@ local p = premake
 p.modules.compilecommands = {}
 p.modules.compilecommands._VERSION = p._VERSION
 
-local m = p.modules.compilecommands 
+local m = p.modules.compilecommands
 
 
 function m.esc(value)
@@ -131,7 +131,7 @@ function m.getflags(cfg, toolset, fcfg, tool)
 	local allincludedirflags = table.flatten(table.translate(allincludedirs, function(kv)
 		return {kv.flag, kv.value}
 	end))
-	-- 
+	--
 
 	-- Compile flags and join together
 	flags = table.join(flags,
@@ -185,9 +185,9 @@ end
 function m.getobjectfile(cfg, file, filecfg)
 	local objdir = path.getrelative(cfg.workspace.location, cfg.objdir)
 	local ext = path.getextension(file.abspath):lower()
-	
+
 	local shouldCompile = false
-	
+
 	if filecfg and filecfg.buildaction == "Compile" then
 		shouldCompile = true
 	elseif filecfg and filecfg.compileas and filecfg.compileas ~= "Default" then
@@ -199,14 +199,14 @@ function m.getobjectfile(cfg, file, filecfg)
 			shouldCompile = true
 		end
 	end
-	
+
 	if shouldCompile then
 		local objname = filecfg.objname or path.getbasename(file.abspath)
 		local toolset = m.gettoolset(cfg)
 		local objext = toolset.gettooloutputext("cc")
 		return objdir .. "/" .. objname .. objext
 	end
-	
+
 	return nil
 end
 
@@ -260,7 +260,7 @@ local function generateproject(wks, prj, platform, buildcfg, commands)
 				arguments = args,
 				output = objfile,
 			}
-			
+
 			table.insert(commands, compile_command)
 		end
 	})

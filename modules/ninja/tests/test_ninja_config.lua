@@ -831,7 +831,7 @@ build obj/Debug/MyProject.prelinkevents: prelink obj/Debug/main.o
 		]]
 	end
 
-	
+
 --
 -- Check that prelink commands generate a prelink target on Linux.
 --

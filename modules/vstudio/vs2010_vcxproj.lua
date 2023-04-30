@@ -2289,7 +2289,7 @@
 
 			local runtimecheck = c.runtimechecks
 			return checks[runtimecheck]
-			
+
 		end
 
 		local check = getruntimecheck(filecfg or prjcfg)

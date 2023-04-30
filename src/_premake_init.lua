@@ -1434,7 +1434,7 @@
 		description = "Treat warnings from project scripts as errors"
 	}
 
-    newoption
+	newoption
 	{
 		trigger     = "debugger",
 		description = "Start MobDebug remote debugger. Works with ZeroBrane Studio"

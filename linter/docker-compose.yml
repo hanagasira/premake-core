@@ -1,0 +1,10 @@
+version: '3'
+services:
+  linter:
+    image: "github/super-linter"
+    environment:
+      - RUN_LOCAL=true
+      - FILTER_REGEX_EXCLUDE=(binmodules|contrib)/.*
+      # - VALIDATE_EDITORCONFIG=true
+    volumes:
+      - ../:/tmp/lint

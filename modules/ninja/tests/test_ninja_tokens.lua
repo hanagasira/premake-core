@@ -44,24 +44,24 @@
 		kind "ConsoleApp"
 		files { "main.cpp", "shader.glsl" }
 		_OS = "linux"
-		
+
 		filter "files:**.glsl"
 			buildcommands { "glslc %{file.relpath} -o %{cfg.objdir}/%{file.basename}.spv" }
 			buildoutputs { "%{cfg.objdir}/%{file.basename}.spv" }
 		filter {}
-		
+
 		local cfg = prepare()
 		local filecfg = {
 			buildcommands = { "glslc shader.glsl -o obj/Debug/shader.spv" },
 			buildoutputs = { "obj/Debug/shader.spv" },
 		}
-		
+
 		local node = {
 			abspath = path.join(cfg.project.basedir, "shader.glsl")
 		}
-		
+
 		cpp.buildCustomFile(cfg, node, filecfg)
-		
+
 		test.capture [[
 build obj/Debug/shader.spv: custom shader.glsl
   customcommand = sh -c 'glslc shader.glsl -o obj/Debug/shader.spv'
@@ -77,26 +77,26 @@ build obj/Debug/shader.spv: custom shader.glsl
 		kind "ConsoleApp"
 		files { "main.cpp", "data.txt" }
 		_OS = "linux"
-		
+
 		filter "files:**.txt"
 			buildmessage "Processing %{file.name}"
 			buildcommands { "cat %{file.relpath}" }
 			buildoutputs { "%{cfg.objdir}/%{file.basename}.count" }
 		filter {}
-		
+
 		local cfg = prepare()
 		local filecfg = {
 			buildcommands = { "cat data.txt" },
 			buildoutputs = { "obj/Debug/data.count" },
 			buildmessage = "Processing data.txt"
 		}
-		
+
 		local node = {
 			abspath = path.join(cfg.project.basedir, "data.txt")
 		}
-		
+
 		cpp.buildCustomFile(cfg, node, filecfg)
-		
+
 		test.capture [[
 build obj/Debug/data.count: custom data.txt
   customcommand = sh -c 'cat data.txt'
@@ -114,24 +114,24 @@ build obj/Debug/data.count: custom data.txt
 		objdir "intermediate/Debug"
 		files { "main.cpp", "resource.rc" }
 		_OS = "linux"
-		
+
 		filter "files:**.rc"
 			buildcommands { "rc -o intermediate/Debug/resource.res resource.rc" }
 			buildoutputs { "intermediate/Debug/resource.res" }
 		filter {}
-		
+
 		local cfg = prepare()
 		local filecfg = {
 			buildcommands = { "rc -o intermediate/Debug/resource.res resource.rc" },
 			buildoutputs = { "intermediate/Debug/resource.res" },
 		}
-		
+
 		local node = {
 			abspath = path.join(cfg.project.basedir, "resource.rc")
 		}
-		
+
 		cpp.buildCustomFile(cfg, node, filecfg)
-		
+
 		test.capture [[
 build intermediate/Debug/resource.res: custom resource.rc
   customcommand = sh -c 'rc -o intermediate/Debug/resource.res resource.rc'

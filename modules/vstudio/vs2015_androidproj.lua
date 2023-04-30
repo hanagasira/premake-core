@@ -12,16 +12,16 @@
 	local project = p.project
 	local config = p.config
 	local fileconfig = p.fileconfig
-	
+
 	local m = p.vstudio.androidproj
-	
+
 ---
 -- Add namespace for element definition lists for p.callArray()
 ---
 
 	m.elements = {}
 	m.conditionalElements = {}
-	
+
 --
 -- Generate a Visual Studio 201x Android deployment project.
 --

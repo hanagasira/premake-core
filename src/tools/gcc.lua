@@ -438,7 +438,7 @@
 				inSearchList = false
 			elseif inSearchList then
 				local trimmed = line:match("^%s*(.-)%s*$") -- trim whitespace
-				
+
 				-- If on windows, replace backslashes with forward slashes to normalize the paths
 				if os.istarget("windows") then
 					trimmed = trimmed:gsub("\\", "/")
@@ -520,7 +520,7 @@
 			-- Try to make rpath relative to target dir
 			local rpath = path.getrelative(cfg.buildtarget.directory, fullpath)
 
-			if path.isabsolute(rpath) then				
+			if path.isabsolute(rpath) then
 				if mode == "linker" then
 					rpath = "-Wl,-rpath,'" .. rpath .. "'"
 				end

@@ -12,7 +12,7 @@
 
 	local wks, prj
 	local getstructuredimplicitincludedirs = nil
-	
+
 	function suite.setup()
 		-- Replace the getstructuredimplicitincludedirs function with a stub that returns an empty table to ensure consistent test results
 		-- This is necessary because the actual function may return different results based on the environment, which can cause tests to fail unpredictably
@@ -30,7 +30,7 @@
 		return cfg
 	end
 
-	
+
 	function suite.teardown()
 		p.tools.clang.getstructuredimplicitincludedirs = getstructuredimplicitincludedirs
 	end
@@ -60,7 +60,7 @@
 		test.isequal(expected, args)
 	end
 
-	
+
 	function suite.compile_multiple_files()
 		toolset "clang"
 		files { "hello.c", "world.c" }

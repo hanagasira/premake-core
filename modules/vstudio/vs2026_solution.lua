@@ -323,7 +323,7 @@ function m.projects(wks)
 								p.pop()
 							end
 						end
-					
+
 						p.push('<Build Project="false" />')
 						p.pop()
 					end

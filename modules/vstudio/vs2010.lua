@@ -89,7 +89,7 @@
 
 				if project.iscpp(prj) then
 					p.generate(prj, ".androidproj", vstudio.androidproj.generate)
-				
+
 					-- Skip generation of empty user files
 					local user = p.capture(function() vstudio.vc2010.generateUser(prj) end)
 					if #user > 0 then

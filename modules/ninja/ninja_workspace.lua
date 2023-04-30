@@ -42,9 +42,9 @@ end
 function m.defaultTarget(wks)
 	_p("")
 	_p("# Default build target")
-	
+
 	local defaultTargets = {}
-	
+
 	-- Determine which projects to build by default
 	local projectsToBuild = {}
 	if wks.startproject then
@@ -53,17 +53,17 @@ function m.defaultTarget(wks)
 			table.insert(projectsToBuild, startprj)
 		end
 	end
-	
+
 	-- If no startup project specified, build all projects
 	if #projectsToBuild == 0 then
 		for prj in p.workspace.eachproject(wks) do
 			table.insert(projectsToBuild, prj)
 		end
 	end
-	
+
 	-- Determine the default configuration to build
 	local defaultCfg = p.config.getdefault(wks)
-	
+
 	-- Build the list of default targets based on the selected projects and configuration
 	if defaultCfg then
 		for _, prj in ipairs(projectsToBuild) do
@@ -73,7 +73,7 @@ function m.defaultTarget(wks)
 			end
 		end
 	end
-	
+
 	if #defaultTargets > 0 then
 		_p("default %s", table.concat(defaultTargets, " "))
 	end
@@ -89,7 +89,7 @@ end
 function m.phonyConfigPlatformPairs(wks)
 	_p("")
 	_p("# Workspace configuration targets")
-	
+
 	for cfg in p.workspace.eachconfig(wks) do
 		local configKey
 		if cfg.platform then
@@ -97,7 +97,7 @@ function m.phonyConfigPlatformPairs(wks)
 		else
 			configKey = cfg.buildcfg
 		end
-		
+
 		local targets = {}
 		for prj in p.workspace.eachproject(wks) do
 			local prjCfg = p.project.getconfig(prj, cfg.buildcfg, cfg.platform)
@@ -106,7 +106,7 @@ function m.phonyConfigPlatformPairs(wks)
 				table.insert(targets, prjKey)
 			end
 		end
-		
+
 		if #targets > 0 then
 			_p("build %s: phony %s", configKey, table.concat(targets, " "))
 		else

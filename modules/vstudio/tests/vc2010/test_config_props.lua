@@ -195,7 +195,7 @@
 	<UseOfMfc>Static</UseOfMfc>
 		]]
 	end
-	
+
 	function suite.useOfMfc_forceStatic()
 		mfc "Static"
 		prepare()

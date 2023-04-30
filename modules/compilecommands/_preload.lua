@@ -33,7 +33,7 @@ newoption {
 
 	trigger = "implicit-includes",
 	description = "Include implicit include directories in compile_commands.json",
-	
+
 	allowed = {
 		{ "On" , "Include implicit include directories (default)" },
 		{ "Off", "Exclude implicit include directories" },

@@ -1,10 +1,10 @@
-Premake extension to support the [CodeLite](http://www.codelite.org/) IDE
+# Premake extension to support the [CodeLite](http://www.codelite.org/) IDE
 
-### Features ###
+## Features ##
 
 * Support for C/C++ language projects
 
-### Usage ###
+## Usage ##
 
 Simply generate your project using the `codelite` action:
 ```bash

@@ -156,7 +156,7 @@
 		if cfg.incrementallink == p.ON then
 			return true
 		end
-		
+
 		if cfg.kind == "StaticLib"
 				or config.isOptimizedBuild(cfg)
 				or cfg.incrementallink == p.OFF

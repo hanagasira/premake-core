@@ -43,14 +43,14 @@
 		toolset "gcc"
 		language "C++"
 		files { "test.c" }
-		
+
 		filter "files:test.c"
 			compileas "C++"
 		filter {}
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/test.o: cxx_gcc test.c
   cxxflags = $cxxflags_MyProject_Debug -x c++
@@ -66,14 +66,14 @@ build obj/Debug/test.o: cxx_gcc test.c
 		toolset "gcc"
 		language "C"
 		files { "test.cpp" }
-		
+
 		filter "files:test.cpp"
 			compileas "C"
 		filter {}
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/test.o: cc_gcc test.cpp
   cflags = $cflags_MyProject_Debug -x c
@@ -89,14 +89,14 @@ build obj/Debug/test.o: cc_gcc test.cpp
 		toolset "gcc"
 		language "C++"
 		files { "test.mycppext" }
-		
+
 		filter "files:test.mycppext"
 			compileas "C++"
 		filter {}
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/test.o: cxx_gcc test.mycppext
   cxxflags = $cxxflags_MyProject_Debug -x c++
@@ -112,14 +112,14 @@ build obj/Debug/test.o: cxx_gcc test.mycppext
 		toolset "gcc"
 		language "C"
 		files { "test.mycext" }
-		
+
 		filter "files:test.mycext"
 			compileas "C"
 		filter {}
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/test.o: cc_gcc test.mycext
   cflags = $cflags_MyProject_Debug -x c
@@ -136,14 +136,14 @@ build obj/Debug/test.o: cc_gcc test.mycext
 		_OS = "windows"
 		language "C"
 		files { "test.cpp" }
-		
+
 		filter "files:test.cpp"
 			compileas "C"
 		filter {}
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/test.obj: cc_msc test.cpp
   cflags = $cflags_MyProject_Debug /TC
@@ -160,14 +160,14 @@ build obj/Debug/test.obj: cc_msc test.cpp
 		_OS = "windows"
 		language "C++"
 		files { "test.c" }
-		
+
 		filter "files:test.c"
 			compileas "C++"
 		filter {}
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/test.obj: cxx_msc test.c
   cxxflags = $cxxflags_MyProject_Debug /TP
@@ -183,10 +183,10 @@ build obj/Debug/test.obj: cxx_msc test.c
 		toolset "gcc"
 		language "C++"
 		files { "test.cpp" }
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/test.o: cxx_gcc test.cpp
   cxxflags = $cxxflags_MyProject_Debug
@@ -202,10 +202,10 @@ build obj/Debug/test.o: cxx_gcc test.cpp
 		toolset "gcc"
 		language "C"
 		files { "test.c" }
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/test.o: cc_gcc test.c
   cflags = $cflags_MyProject_Debug

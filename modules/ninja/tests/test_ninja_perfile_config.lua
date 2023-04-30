@@ -44,14 +44,14 @@
 		_OS = "Linux"
 		files { "main.cpp", "special.cpp" }
 		defines { "MAIN_DEFINE" }
-		
+
 		filter "files:special.cpp"
 			defines { "SPECIAL_DEFINE" }
 		filter {}
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/main.o: cxx_gcc main.cpp
   cxxflags = $cxxflags_MyProject_Debug
@@ -70,14 +70,14 @@ build obj/Debug/special.o: cxx_gcc special.cpp
 		_OS = "Windows"
 		files { "main.cpp", "special.cpp" }
 		defines { "MAIN_DEFINE" }
-		
+
 		filter "files:special.cpp"
 			defines { "SPECIAL_DEFINE" }
 		filter {}
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/main.obj: cxx_msc main.cpp
   cxxflags = $cxxflags_MyProject_Debug
@@ -99,14 +99,14 @@ build obj/Debug/special.obj: cxx_msc special.cpp
 		toolset "gcc"
 		_OS = "Linux"
 		files { "main.cpp", "optimized.cpp" }
-		
+
 		filter "files:optimized.cpp"
 			buildoptions { "-O3", "-ffast-math" }
 		filter {}
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/main.o: cxx_gcc main.cpp
   cxxflags = $cxxflags_MyProject_Debug
@@ -129,14 +129,14 @@ build obj/Debug/optimized.o: cxx_gcc optimized.cpp
 		_OS = "Linux"
 		files { "main.cpp", "modern.cpp" }
 		cppdialect "C++11"
-		
+
 		filter "files:modern.cpp"
 			cppdialect "C++17"
 		filter {}
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/main.o: cxx_gcc main.cpp
   cxxflags = $cxxflags_MyProject_Debug
@@ -156,14 +156,14 @@ build obj/Debug/modern.o: cxx_gcc modern.cpp
 		language "C"
 		files { "main.c", "modern.c" }
 		cdialect "C89"
-		
+
 		filter "files:modern.c"
 			cdialect "C11"
 		filter {}
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/main.o: cc_gcc main.c
   cflags = $cflags_MyProject_Debug
@@ -186,14 +186,14 @@ build obj/Debug/modern.o: cc_gcc modern.c
 		_OS = "Linux"
 		files { "main.cpp", "special.cpp" }
 		includedirs { "include" }
-		
+
 		filter "files:special.cpp"
 			includedirs { "special/include" }
 		filter {}
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/main.o: cxx_gcc main.cpp
   cxxflags = $cxxflags_MyProject_Debug
@@ -217,16 +217,16 @@ build obj/Debug/special.o: cxx_gcc special.cpp
 		files { "main.cpp", "special.cpp" }
 		defines { "MAIN_DEFINE" }
 		includedirs { "include" }
-		
+
 		filter "files:special.cpp"
 			defines { "SPECIAL_DEFINE" }
 			includedirs { "special/include" }
 			buildoptions { "-O3" }
 		filter {}
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/main.o: cxx_gcc main.cpp
   cxxflags = $cxxflags_MyProject_Debug
@@ -246,16 +246,16 @@ build obj/Debug/special.o: cxx_gcc special.cpp
 		files { "main.cpp", "special.cpp" }
 		defines { "MAIN_DEFINE" }
 		includedirs { "include" }
-		
+
 		filter "files:special.cpp"
 			defines { "SPECIAL_DEFINE" }
 			includedirs { "special/include" }
 			buildoptions { "/O2" }
 		filter {}
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/main.obj: cxx_msc main.cpp
   cxxflags = $cxxflags_MyProject_Debug
@@ -278,14 +278,14 @@ build obj/Debug/special.obj: cxx_msc special.cpp
 		_OS = "Linux"
 		files { "main.cpp", "special.cpp" }
 		defines { "MAIN_DEFINE" }
-		
+
 		filter "files:special.cpp"
 			undefines { "UNWANTED_DEFINE" }
 		filter {}
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/main.o: cxx_gcc main.cpp
   cxxflags = $cxxflags_MyProject_Debug
@@ -307,14 +307,14 @@ build obj/Debug/special.o: cxx_gcc special.cpp
 		toolset "gcc"
 		_OS = "Linux"
 		files { "main.cpp", "simd.cpp" }
-		
+
 		filter "files:simd.cpp"
 			vectorextensions "AVX2"
 		filter {}
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/main.o: cxx_gcc main.cpp
   cxxflags = $cxxflags_MyProject_Debug
@@ -332,14 +332,14 @@ build obj/Debug/simd.o: cxx_gcc simd.cpp
 		toolset "msc"
 		_OS = "Windows"
 		files { "main.cpp", "simd.cpp" }
-		
+
 		filter "files:simd.cpp"
 			vectorextensions "AVX2"
 		filter {}
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/main.obj: cxx_msc main.cpp
   cxxflags = $cxxflags_MyProject_Debug
@@ -358,15 +358,15 @@ build obj/Debug/simd.obj: cxx_msc simd.cpp
 		_OS = "Windows"
 		language "C"
 		files { "main.c", "simd.c" }
-		
+
 		filter "files:simd.c"
 			vectorextensions "AVX2"
 			buildoptions { "/wd4716" }
 		filter {}
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/main.obj: cc_msc main.c
   cflags = $cflags_MyProject_Debug
@@ -385,15 +385,15 @@ build obj/Debug/simd.obj: cc_msc simd.c
 		_OS = "Linux"
 		language "C"
 		files { "main.c", "simd.c" }
-		
+
 		filter "files:simd.c"
 			vectorextensions "AVX2"
 			buildoptions { "-O3" }
 		filter {}
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/main.o: cc_gcc main.c
   cflags = $cflags_MyProject_Debug
@@ -412,14 +412,14 @@ build obj/Debug/simd.o: cc_gcc simd.c
 		_OS = "Linux"
 		files { "main.cpp", "simd.cpp" }
 		vectorextensions "SSE2"
-		
+
 		filter "files:simd.cpp"
 			vectorextensions "AVX2"
 		filter {}
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/main.o: cxx_gcc main.cpp
   cxxflags = $cxxflags_MyProject_Debug
@@ -438,14 +438,14 @@ build obj/Debug/simd.o: cxx_gcc simd.cpp
 		_OS = "Windows"
 		files { "main.cpp", "simd.cpp" }
 		vectorextensions "AVX"
-		
+
 		filter "files:simd.cpp"
 			vectorextensions "AVX2"
 		filter {}
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/main.obj: cxx_msc main.cpp
   cxxflags = $cxxflags_MyProject_Debug
@@ -465,20 +465,20 @@ build obj/Debug/simd.obj: cxx_msc simd.cpp
 		files { "main.cpp", "special.cpp" }
 		defines { "PROJ_DEF" }
 		cppdialect "C++11"
-		
+
 		filter "files:special.cpp"
 			defines { "FILTER1_DEF" }
 			cppdialect "C++14"
 		filter {}
-		
+
 		filter "files:*.cpp"
 			defines { "FILTER2_DEF" }
 			cppdialect "C++17"
 		filter {}
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/main.o: cxx_gcc main.cpp
   cxxflags = -std=c++17 -D"PROJ_DEF" -D"FILTER2_DEF"
@@ -502,10 +502,10 @@ build obj/Debug/special.o: cxx_gcc special.cpp
 		files { "main.cpp", "other.cpp" }
 		defines { "MAIN_DEFINE" }
 		includedirs { "include" }
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/main.o: cxx_gcc main.cpp
   cxxflags = $cxxflags_MyProject_Debug
@@ -524,10 +524,10 @@ build obj/Debug/other.o: cxx_gcc other.cpp
 		_OS = "Linux"
 		files { "main.c", "other.c" }
 		forceincludes { "unistd.h" }
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/main.o: cc_gcc main.c
   cflags = $cflags_MyProject_Debug
@@ -546,14 +546,14 @@ build obj/Debug/other.o: cc_gcc other.c
 		_OS = "Linux"
 		files { "main.c", "special.c" }
 		forceincludes { "unistd.h" }
-		
+
 		filter "files:special.c"
 			forceincludes { "extra.h" }
 		filter {}
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/main.o: cc_gcc main.c
   cflags = $cflags_MyProject_Debug
@@ -572,10 +572,10 @@ build obj/Debug/special.o: cc_gcc special.c
 		_OS = "Windows"
 		files { "main.cpp", "other.cpp" }
 		enablewarnings { "4061", "4062" }
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/main.obj: cxx_msc main.cpp
   cxxflags = $cxxflags_MyProject_Debug
@@ -594,14 +594,14 @@ build obj/Debug/other.obj: cxx_msc other.cpp
 		_OS = "Linux"
 		files { "main.cpp", "special.cpp" }
 		enablewarnings { "switch" }
-		
+
 		filter "files:special.cpp"
 			enablewarnings { "shadow" }
 		filter {}
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/main.o: cxx_gcc main.cpp
   cxxflags = $cxxflags_MyProject_Debug
@@ -620,10 +620,10 @@ build obj/Debug/special.o: cxx_gcc special.cpp
 		_OS = "Windows"
 		files { "main.cpp", "other.cpp" }
 		fatalwarnings "All"
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/main.obj: cxx_msc main.cpp
   cxxflags = $cxxflags_MyProject_Debug
@@ -642,14 +642,14 @@ build obj/Debug/other.obj: cxx_msc other.cpp
 		_OS = "Linux"
 		files { "main.cpp", "special.cpp" }
 		fatalwarnings { "return-type" }
-		
+
 		filter "files:special.cpp"
 			fatalwarnings { "uninitialized" }
 		filter {}
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/main.o: cxx_gcc main.cpp
   cxxflags = $cxxflags_MyProject_Debug
@@ -667,14 +667,14 @@ build obj/Debug/special.o: cxx_gcc special.cpp
 		toolset "msc"
 		_OS = "Windows"
 		files { "main.cpp", "special.cpp" }
-		
+
 		filter "files:special.cpp"
 			characterset "MBCS"
 		filter {}
-		
+
 		local cfg = prepare()
 		cpp.buildFiles(cfg)
-		
+
 		test.capture [[
 build obj/Debug/main.obj: cxx_msc main.cpp
   cxxflags = $cxxflags_MyProject_Debug

@@ -933,7 +933,7 @@
 				local namematch = p.usage.findglobal(use)
 				for i = 1, #namematch do
 					local usagecfg = p.project.findClosestMatch(namematch[i], cfg.buildcfg, cfg.platform)
-					
+
 					if usagecfg then
 						-- Apply the usage block to the project configuration
 						local children = collectUsages(usagecfg)
@@ -944,7 +944,7 @@
 					end
 				end
 
-				if #namematch == 0 then				
+				if #namematch == 0 then
 					p.warnOnce('no-such-usage:' .. use, "Usage '%s' not found in project '%s'", use, cfg.project.name)
 				end
 			end
@@ -957,7 +957,7 @@
 			if usagecfg then
 				local result = {}
 				local uses = collectUsages(usagecfg)
-				
+
 				result = table.join(result, uses)
 				table.insert(result, usagecfg)
 

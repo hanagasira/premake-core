@@ -1547,23 +1547,23 @@ end
 -- Test runpath dirs
 --
 
-	function suite.runpathdirs_onRelativeDir()	
+	function suite.runpathdirs_onRelativeDir()
 		local paths = { "libs" }
-		
+
 		runpathdirs(paths)
 		prepare()
-    
+
 		test.contains({ "-Wl,-rpath,'$$ORIGIN/libs'" }, gcc.getrunpathdirs(cfg, paths))
 	end
 
 
-	function suite.runpathdirs_onRelativeDir_macosx()	
+	function suite.runpathdirs_onRelativeDir_macosx()
 		local paths = { "libs" }
-		
+
 		system("MacOSX")
 		runpathdirs(paths)
 		prepare()
-	
+
 		test.contains({ "-Wl,-rpath,'@loader_path/libs'" }, gcc.getrunpathdirs(cfg, paths))
 	end
 
@@ -1577,12 +1577,12 @@ end
 		test.isequal({ "-Wl,-rpath,'$$ORIGIN/libs'", "-Wl,-z,origin" }, gcc.getrunpathdirs(cfg, paths))
 	end
 
-	function suite.runpathdirs_onAbsoluteDir()	
+	function suite.runpathdirs_onAbsoluteDir()
 		local paths = { "/usr/local/lib/mylibs" }
-		
+
 		runpathdirs(paths)
 		prepare()
-	
+
 		test.contains({ "-Wl,-rpath,'/usr/local/lib/mylibs'" }, gcc.getrunpathdirs(cfg, paths))
 	end
 
@@ -1594,7 +1594,7 @@ end
 		infoplist "./MyInfo.plist"
 
 		prepare()
-	
+
 		local actual = gcc.getsections(cfg)
 		local expected = "-Wl,-sectcreate,__TEXT,__info_plist,MyInfo.plist"
 		test.contains({expected}, actual)

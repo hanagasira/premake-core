@@ -20,7 +20,7 @@
 
 	function suite.setup()
 		p.action.set("ninja")
-		
+
 		-- Define a test rule
 		rule "TestRule"
 		display "Test Rule"
@@ -29,10 +29,10 @@
 		buildmessage 'Rule-ing %{file.name}'
 		buildcommands 'dorule "%{file.path}"'
 		buildoutputs { "%{file.basename}.obj" }
-		
+
 		-- Switch back to global scope
 		_G.global(nil)
-		
+
 		wks, prj = test.createWorkspace()
 	end
 
@@ -52,10 +52,10 @@
 
 	function suite.customRule_generatesNinjaRule()
 		rules { "TestRule" }
-		
+
 		local cfg = prepare()
 		cpp.customrule(cfg, nil, prj)
-		
+
 		test.capture [[
 rule testrule
   command = $testrule_command
@@ -72,10 +72,10 @@ rule testrule
 	function suite.customRule_multipleFilesOnlyOneRule()
 		rules { "TestRule" }
 		files { "test1.rule", "test2.rule", "test3.rule" }
-		
+
 		local cfg = prepare()
 		cpp.customrule(cfg, nil, prj)
-		
+
 		-- Should only generate the rule once
 		test.capture [[
 rule testrule

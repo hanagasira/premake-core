@@ -460,7 +460,7 @@
 			>
 		]]
 	end
-	
+
 	function suite.excludedFromBuild_onCustomBuildRule_excludeAPI()
 		files { "hello.cg" }
 		filter "files:**.cg"
