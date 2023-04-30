@@ -1095,10 +1095,10 @@
 		name = "resourcegenerator",
 		scope = "project",
 		kind = "string",
-        allowed = {
-            "internal",
-            "public"
-        }
+		allowed = {
+			"internal",
+			"public"
+		}
 	}
 
 	api.register {
@@ -1813,7 +1813,7 @@
 		description = "Treat warnings from project scripts as errors"
 	}
 
-    newoption
+	newoption
 	{
 		trigger     = "debugger",
 		description = "Start MobDebug remote debugger. Works with ZeroBrane Studio"

@@ -1,24 +1,24 @@
-Premake Extension to support the [D](http://dlang.org) language
+# Premake Extension to support the [D](http://dlang.org) language
 
-### Features ###
+## Features ##
 
 * Support actions: gmake, vs20xx (VisualD)
 * Support all compilers; DMD, LDC, GDC
 * Support combined and separate compilation
 
-### Usage ###
+## Usage ##
 
 Simply add:
 ```lua
 language "D"
 ```
-to your project definition and populate with .d files.  
+to your project definition and populate with .d files.
 C and C++ projects that include .d files will also support some of the API below. Any API tagged with (D/C/C++) works in D and C/C++ projects. Any API tagged with (C/C++) only works for .d files in C/C++ projects.
 
-### APIs ###
+## APIs ##
 
 * [flags](https://github.com/premake/premake-dlang/wiki/flags)
-  * AllInstantiate 
+  * AllInstantiate
   * CodeCoverage
   * Color
   * Documentation
@@ -69,7 +69,7 @@ C and C++ projects that include .d files will also support some of the API below
 * [versionconstants](https://github.com/premake/premake-dlang/wiki/versionconstants)
 * [versionlevel](https://github.com/premake/premake-dlang/wiki/versionlevel)
 
-### Example ###
+## Example ##
 
 The contents of your premake5.lua file would be:
 

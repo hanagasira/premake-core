@@ -1,6 +1,6 @@
-Premake extension to support writing the raw lua tables.
+# Premake extension to support writing the raw lua tables.
 
-### Usage ###
+## Usage ##
 
 Simply generate your project using the `raw` action:
 ```bash
