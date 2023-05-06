@@ -1063,6 +1063,13 @@
 	}
 
 	api.register {
+		name = "props",
+		scope = "config",
+		kind = "list:table",
+		tokens = true,
+	}
+
+	api.register {
 		name = "rebuildcommands",
 		scope = "config",
 		kind = "list:string",

@@ -81,3 +81,26 @@
 		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 		]]
 	end
+
+
+--
+-- Check handling of AdditionialProps.
+--
+
+
+	function suite.treatAdditionalProps()
+		local cfg = test.getconfig(prj, "Debug")
+		props {
+			Zzz = "zzz",
+			Aaa = "aaa",
+		}
+		prepare()
+		dn2005.additionalProps(cfg)
+		test.capture [[
+		<DefineConstants></DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+		<Aaa>aaa</Aaa>
+		<Zzz>zzz</Zzz>
+		]]
+	end

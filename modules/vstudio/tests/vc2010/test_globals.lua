@@ -476,6 +476,41 @@ end
 		]]
 	end
 
+	function suite.additionalProps()
+		p.action.set("vs2022")
+
+		props {
+			-- https://devblogs.microsoft.com/directx/gettingstarted-dx12agility/#2-set-agility-sdk-parameters
+			Microsoft_Direct3D_D3D12_D3D12SDKPath = "custom_path",
+		}
+		filter "Debug"
+			props {
+				Aaa = "DebugParam",
+			}
+		filter "Release"
+			props {
+				Aaa = "ReleaseParam",
+			}
+		filter {}
+		prepare()
+		test.capture [[
+<PropertyGroup Label="Globals">
+	<ProjectGuid>{42B5DBC6-AE1F-903D-F75D-41E363076E92}</ProjectGuid>
+	<IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+	<Keyword>Win32Proj</Keyword>
+	<RootNamespace>MyProject</RootNamespace>
+</PropertyGroup>
+<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Globals">
+	<Microsoft_Direct3D_D3D12_D3D12SDKPath>custom_path</Microsoft_Direct3D_D3D12_D3D12SDKPath>
+	<Aaa>DebugParam</Aaa>
+</PropertyGroup>
+<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Globals">
+	<Microsoft_Direct3D_D3D12_D3D12SDKPath>custom_path</Microsoft_Direct3D_D3D12_D3D12SDKPath>
+	<Aaa>ReleaseParam</Aaa>
+</PropertyGroup>
+		]]
+	end
+
 
 	function suite.disableFastUpToDateCheck()
 		fastuptodate "Off"

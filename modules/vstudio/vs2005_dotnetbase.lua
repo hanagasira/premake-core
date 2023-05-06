@@ -58,7 +58,7 @@
 		if dotnetbase.isNewFormatProject(prj) then
 			if prj.flags.WPF then
 				_p('<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">')
-			else				
+			else
 				_p('<Project Sdk="Microsoft.NET.Sdk">')
 			end
 		else
@@ -241,6 +241,17 @@
 		end
 	end
 
+--
+-- Write out the additional props.
+--
+
+	function dotnetbase.additionalProps(cfg)
+		for i = 1, #cfg.props do
+			for key, value in spairs(cfg.props[i]) do
+				_p(2, '<%s>%s</%s>', key, value, key)
+			end
+		end
+	end
 
 --
 -- Write the compiler flags for a particular configuration.
@@ -739,6 +750,7 @@
 			_p(2,'<LangVersion>%s</LangVersion>', cfg.csversion)
 		end
 	end
+
 
 	function dotnetbase.targetFrameworkProfile(cfg)
 		if _ACTION == "vs2010" then

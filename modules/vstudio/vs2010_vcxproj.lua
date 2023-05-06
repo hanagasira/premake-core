@@ -143,6 +143,7 @@
 		return {
 			m.windowsTargetPlatformVersion,
 			m.xpDeprecationWarning,
+			m.additionalProps,
 		}
 	end
 
@@ -1349,8 +1350,8 @@
 								if value and #value > 0 then
 									m.element(prop.name, m.configPair(cfg), '%s', value)
 								end
-								end
 							end
+						end
 						if #m.conditionalElements > 0 then
 							m.emitConditionalElements(prj)
 						end
@@ -2899,6 +2900,15 @@
 	function m.xpDeprecationWarning(prj, cfg)
 		if cfg.toolset == "msc-v141_xp" then
 			m.element("XPDeprecationWarning", nil, "false")
+		end
+	end
+
+
+	function m.additionalProps(prj, cfg)
+		for i = 1, #cfg.props do
+			for key, value in spairs(cfg.props[i]) do
+				m.element(key, nil, value)
+			end
 		end
 	end
 
