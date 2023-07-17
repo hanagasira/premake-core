@@ -14,7 +14,7 @@ checkaction (value)
 * `Halt`: needs documentation
 * `Context`: needs documentation
 
-## Applies To ###
+### Applies To ###
 
 The `config` scope.
 

@@ -11,7 +11,7 @@ revert (value)
 * `dip25`: needs documentation
 * `import`: needs documentation
 
-## Applies To ###
+### Applies To ###
 
 The `config` scope.
 

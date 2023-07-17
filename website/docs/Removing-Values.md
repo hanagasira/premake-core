@@ -8,15 +8,15 @@ The remove...() set of functions remove one or more values from a list of config
 remove... { "values_to_remove" }
 ```
 
-## Applies To ##
+### Applies To ###
 
 Project configurations.
 
-## Parameters ##
+### Parameters ###
 
 One or more values to remove. If multiple values are specified, use the Lua table syntax.
 
-## Examples ##
+### Examples ###
 
 Remove the NoExceptions flag from a previous configuration.
 

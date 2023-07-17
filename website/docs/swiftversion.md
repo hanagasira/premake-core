@@ -12,7 +12,7 @@ swiftversion (value)
 * `4.2`: needs documentation
 * `5.0`: needs documentation
 
-## Applies To ###
+### Applies To ###
 
 The `config` scope.
 

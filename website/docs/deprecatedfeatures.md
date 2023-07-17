@@ -13,7 +13,7 @@ deprecatedfeatures (value)
 * `Warn`: needs documentation
 * `Error`: needs documentation
 
-## Applies To ###
+### Applies To ###
 
 The `config` scope.
 

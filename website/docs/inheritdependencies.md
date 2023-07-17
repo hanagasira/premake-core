@@ -4,7 +4,7 @@ inheritdependencies
 inheritdependencies "value"
 ```
 
-For Visual Studio project files, this controls the generation of the `%(AdditionalDependencies)` entry in the list of libraries that a project links. 
+For Visual Studio project files, this controls the generation of the `%(AdditionalDependencies)` entry in the list of libraries that a project links.
 
 ### Parameters ###
 
@@ -12,7 +12,7 @@ For Visual Studio project files, this controls the generation of the `%(Addition
 * `On` - The project(s) will inherit library dependencies based on the parent project (if any) and project default settings. This is the default behavior.
 * `Off` - The project(s) will not inherit any library dependencies. Only explicitly specified dependencies will be linked.
 
-## Applies To ###
+### Applies To ###
 
 The `config` scope.
 

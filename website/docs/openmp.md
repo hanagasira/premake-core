@@ -23,7 +23,7 @@ Project configurations.
 Premake 5.0-beta1 or later for Visual Studio 2010+ and the MSC toolset.
 Premake 5.0-beta2 or later for the GCC and Clang toolsets and for xcode.
 
-## Examples ##
+### Examples ###
 
 ```lua
 openmp "On"

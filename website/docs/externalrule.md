@@ -17,7 +17,7 @@ The `externalrule()` function behaves just like [rule()](rule.md), except that i
 Premake 5.0 or later; currently Visual Studio only.
 
 
-## Examples ##
+### Examples ###
 
 ```lua
 externalrule "luac"

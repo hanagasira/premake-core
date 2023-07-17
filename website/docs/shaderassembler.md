@@ -12,7 +12,7 @@ shaderassembler (value)
 * `AssemblyCode`: needs documentation
 * `AssemblyCodeAndHex`: needs documentation
 
-## Applies To ###
+### Applies To ###
 
 The `config` scope.
 

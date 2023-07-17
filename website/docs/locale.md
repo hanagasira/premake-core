@@ -18,7 +18,7 @@ Project configurations.
 
 Premake 5.0 or later.
 
-## Examples ##
+### Examples ###
 
 ```lua
 locale "en-GB"

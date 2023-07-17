@@ -12,7 +12,7 @@ iosfamily (value)
 * `iPad`: needs documentation
 * `Universal`: needs documentation
 
-## Applies To ###
+### Applies To ###
 
 The `config` scope.
 

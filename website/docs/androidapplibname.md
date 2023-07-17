@@ -10,7 +10,7 @@ By default, the project name will be used as the file name for the APK.
 
 `value` is the new file name.
 
-## Applies To ###
+### Applies To ###
 
 The `config` scope.
 

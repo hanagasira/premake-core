@@ -16,7 +16,7 @@ In Visual Studio, this overrides the /FC flag which is forced on when using debu
 | `Off`       | Use relative paths in diagnostics            |
 | `On`        | Use absolute (full) paths in diagnostics           |
 
-## Applies To ###
+### Applies To ###
 
 The `config` scope.
 

@@ -12,7 +12,7 @@ omitframepointer (value)
 * `On`: needs documentation
 * `Off`: needs documentation
 
-## Applies To ###
+### Applies To ###
 
 The `config` scope.
 

@@ -14,7 +14,7 @@ embedAndSign "SDL2.framework"
 
 `value` is the name of the content to be embedded and signed.
 
-## Applies To ###
+### Applies To ###
 
 The `config` scope. Only applies to Xcode projects.
 
@@ -27,7 +27,7 @@ Premake 5.0.0 beta 1 or later.
 ```lua
 embedAndSign {
 	"SDL2.framework",
-	"Another.framework"   
+	"Another.framework"
 }
 ```
 

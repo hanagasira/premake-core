@@ -12,7 +12,7 @@ thumbmode ("value")
 * `arm`: Uses the ARM instruction set.
 * `disabled`: Disables usage of Thumb instruction set.
 
-## Applies To ###
+### Applies To ###
 
 The `config` scope.
 

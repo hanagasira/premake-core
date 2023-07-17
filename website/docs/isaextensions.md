@@ -20,7 +20,7 @@ isaextensions (value)
 * `FMA4`: needs documentation
 * `RDRND`: needs documentation
 
-## Applies To ###
+### Applies To ###
 
 The `config` scope.
 

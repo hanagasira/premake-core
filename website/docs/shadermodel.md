@@ -25,7 +25,7 @@ shadermodel ("value")
 * `6.4`: Shader Model 6.4
 * `6.5`: Shader Model 6.5
 
-## Applies To ###
+### Applies To ###
 
 The `config` scope.
 

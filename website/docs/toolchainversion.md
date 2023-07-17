@@ -17,7 +17,7 @@ toolchainversion ("value")
 * `3.8`: Clang 3.8
 * `5.0`: Clang 5.0
 
-## Applies To ###
+### Applies To ###
 
 The `config` scope.
 

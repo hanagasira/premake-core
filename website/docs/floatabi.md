@@ -12,7 +12,7 @@ floatabi ("value")
 * `softfp`: Compiler will generate code using hardware floating-point instructions, but still uses the soft-float calling conventions.
 * `hard`: Compiler will generate floating-point instructions using FPU-specific calling conventions.
 
-## Applies To ###
+### Applies To ###
 
 The `config` scope.
 

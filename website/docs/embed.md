@@ -14,7 +14,7 @@ embed "Foo.framework"
 
 `value` is the name of the content to be embedded.
 
-## Applies To ###
+### Applies To ###
 
 The `config` scope. Only applies to Xcode projects.
 
@@ -27,7 +27,7 @@ Premake 5.0.0 beta 1 or later.
 ```lua
 embed {
 	"SDL2.dylib",
-	"bar.framework"   
+	"bar.framework"
 }
 ```
 

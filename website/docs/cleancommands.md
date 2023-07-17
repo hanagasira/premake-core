@@ -16,7 +16,7 @@ cleancommands { "commands" }
 
 Premake 5.0 or later.
 
-## Examples ##
+### Examples ###
 
 Use a [Makefile project](Makefile-Projects.md) to execute an external makefile.
 

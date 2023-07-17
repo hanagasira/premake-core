@@ -10,10 +10,10 @@ It is equivalent to this Lua code:
 print(string.format(format, unpack(arg))
 ```
 
-## Parameters ##
+### Parameters ###
 
 **format** is a formatting string containing C `printf()` style formatting codes. It is followed by a list of arguments to be substituted into the format string.
 
-## Return Value ##
+### Return Value ###
 
 None.

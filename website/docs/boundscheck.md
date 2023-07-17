@@ -13,7 +13,7 @@ boundscheck (value)
 * `On`: needs documentation
 * `SafeOnly`: needs documentation
 
-## Applies To ###
+### Applies To ###
 
 The `config` scope.
 

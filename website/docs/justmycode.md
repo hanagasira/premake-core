@@ -24,7 +24,7 @@ Premake 5.0 or later.
 
 Visual Studio 2017 version 15.8 or later.
 
-## Examples ##
+### Examples ###
 
 ```lua
 justmycode "Off"

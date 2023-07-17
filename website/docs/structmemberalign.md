@@ -14,7 +14,7 @@ structmemberalign (value)
 * `8`: needs documentation
 * `16`: needs documentation
 
-## Applies To ###
+### Applies To ###
 
 The `config` scope.
 

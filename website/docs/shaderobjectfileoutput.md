@@ -8,7 +8,7 @@ shaderobjectfileoutput ("path")
 
 `path` is the output path of HLSL files that have been compiled into Compiled Shader Objects.
 
-## Applies To ###
+### Applies To ###
 
 The `config` scope.
 

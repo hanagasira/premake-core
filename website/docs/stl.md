@@ -16,7 +16,7 @@ The `staticruntime` API is used to determine if a static or shared version of th
 * `gnu`: GNU STL library.
 * `libc++`: LLVM libc++ library.
 
-## Applies To ###
+### Applies To ###
 
 The `config` scope.
 

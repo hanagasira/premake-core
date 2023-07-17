@@ -4,15 +4,15 @@ The **iif** function implements an immediate "if" clause, returning one of two p
 result = iif(condition, trueval, falseval)
 ```
 
-## Parameters ##
+### Parameters ###
 
 *condition* is the logical condition to test. *trueval* is the value to return if the condition evaluates to true, *falseval* if the condition evaluates false.
 
-## Return Value ##
+### Return Value ###
 
 *trueval* is the condition evaluates true, *falseval* otherwise.
 
-## Examples ##
+### Examples ###
 
 ```lua
 result = iif(os.is("windows"), "is windows", "is not windows")

@@ -27,7 +27,7 @@ Project configurations.
 
 Premake 5.0.
 
-## Examples ##
+### Examples ###
 
 ```lua
 optimize "Speed"

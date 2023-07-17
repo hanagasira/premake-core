@@ -13,7 +13,7 @@ compilationmodel (value)
 * `Package`: needs documentation
 * `Project`: needs documentation
 
-## Applies To ###
+### Applies To ###
 
 The `config` scope.
 

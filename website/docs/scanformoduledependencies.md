@@ -18,7 +18,7 @@ Project configurations.
 
 Premake 5.0-beta2 or later. Only available for Visual Studio 2019 16.9.x and later.
 
-## Examples ##
+### Examples ###
 
 ```lua
 scanformoduledependencies "true"

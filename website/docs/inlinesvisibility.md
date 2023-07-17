@@ -11,7 +11,7 @@ inlinesvisibility (value)
 * `Default`: needs documentation
 * `Hidden`: needs documentation
 
-## Applies To ###
+### Applies To ###
 
 The `config` scope.
 

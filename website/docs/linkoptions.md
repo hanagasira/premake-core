@@ -4,7 +4,7 @@ Passes arguments directly to the linker command line without translation.
 linkoptions { "options" }
 ```
 
-## Parameters ##
+### Parameters ###
 
 `options` is a list of linker flags and options, specific to a particular linker.
 

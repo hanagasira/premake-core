@@ -20,7 +20,7 @@ shadertype ("value")
 * `Texture`
 * `RootSignature`
 
-## Applies To ###
+### Applies To ###
 
 The `config` scope.
 
