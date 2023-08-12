@@ -2201,7 +2201,7 @@
 			if #includes > 0 then
 				m.element("ForcedIncludeFiles", condition, table.concat(includes, ';'))
 			end
-		end		
+		end
 	end
 
 	function m.forceUsings(cfg, condition)
@@ -2221,7 +2221,7 @@
 
 	function m.assemblyDebug(cfg)
 		if cfg.assemblydebug then
-      		m.element("AssemblyDebug", nil, "true")
+			m.element("AssemblyDebug", nil, "true")
 		end
 	end
 
@@ -2793,7 +2793,7 @@
 		if llvmdir and _ACTION >= "vs2019" then
 			m.element("LLVMInstallDir", nil, vstudio.path(cfg, llvmdir))
 		end
-		
+
 		if llvmversion and _ACTION >= "vs2019" then
 			m.element("LLVMToolsVersion", nil, llvmversion)
 		end
@@ -3481,7 +3481,7 @@
 
 	function m.linuxDebugInformationFormat(cfg)
 		if cfg.symbols then
-	
+
 			if cfg.symbols == p.OFF then
 				m.element("DebugInformationFormat", nil, "None")
 			elseif cfg.symbols == "Full" then
@@ -3524,7 +3524,7 @@
 			["gnu++17"] = "gnu++17",
 			["gnu++20"] = "gnu++20",
 		}
-		
+
 		if cpp_langmap[cfg.cppdialect] ~= nil then
 			m.element("CppLanguageStandard", nil, cpp_langmap[cfg.cppdialect])
 		end
@@ -3587,7 +3587,7 @@
 			["wsl"] = "WSL_1_0",
 			["wsl2"] = "WSL2_1_0",
 		}
-		
+
 		local clang_map = {
 			["remote"] = "Remote_Clang_1_0",
 			["wsl"] = "WSL_Clang_1_0",

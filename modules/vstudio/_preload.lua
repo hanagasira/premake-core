@@ -254,7 +254,7 @@
 		scope = "config",
 		kind = "string",
 	}
-	
+
 	-- Relative per-project directory. Set to empty for the entire project to be copied as is
 	-- Should default to empty really for the more seamless experience
 	p.api.register {
