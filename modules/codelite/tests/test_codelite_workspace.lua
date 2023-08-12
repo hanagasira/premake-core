@@ -154,15 +154,15 @@
 	end
 
 
-  function suite.onGroupedProjects()
-    wks.projects = {}
-    project "MyGrouplessProject"
-    group "MyGroup"
-    project "MyGroupedProject"
-    group "My/Nested/Group"
-    project "MyNestedGroupedProject"
-    prepare()
-    test.capture([[
+	function suite.onGroupedProjects()
+		wks.projects = {}
+		project "MyGrouplessProject"
+		group "MyGroup"
+		project "MyGroupedProject"
+		group "My/Nested/Group"
+		project "MyNestedGroupedProject"
+		prepare()
+		test.capture([[
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="MyWorkspace" Database="" Version="10000">
   <VirtualDirectory Name="My">
@@ -190,7 +190,7 @@
   </BuildMatrix>
 </CodeLite_Workspace>
     ]])
-  end
+	end
 
 ---
 -- Test handling of platforms

@@ -2223,7 +2223,7 @@
 
 	function m.assemblyDebug(cfg)
 		if cfg.assemblydebug then
-      		m.element("AssemblyDebug", nil, "true")
+			m.element("AssemblyDebug", nil, "true")
 		end
 	end
 

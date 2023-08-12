@@ -156,7 +156,7 @@ LDDEPS += build/bin/Debug/libMyProject2.so
 -- Check a linking to a sibling shared library using -l and -L.
 --
 
-    function suite.links_onSiblingSharedLibRelativeLinks()
+	function suite.links_onSiblingSharedLibRelativeLinks()
         links "MyProject2"
         flags { "RelativeLinks" }
 
@@ -170,10 +170,10 @@ ALL_LDFLAGS += $(LDFLAGS) -Lbuild/bin/Debug -Wl,-rpath,'$$ORIGIN/../../build/bin
 LIBS += -lMyProject2
 LDDEPS += build/bin/Debug/libMyProject2.so
         ]]
-    end
+	end
 
-    function suite.links_onMacOSXSiblingSharedLib()
-    	_OS = "macosx"
+	function suite.links_onMacOSXSiblingSharedLib()
+		_OS = "macosx"
         links "MyProject2"
 		flags { "RelativeLinks" }
 
@@ -187,7 +187,7 @@ ALL_LDFLAGS += $(LDFLAGS) -Lbuild/bin/Debug -Wl,-rpath,'@loader_path/../../build
 LIBS += -lMyProject2
 LDDEPS += build/bin/Debug/libMyProject2.dylib
         ]]
-    end
+	end
 
 --
 -- Check a linking multiple siblings.

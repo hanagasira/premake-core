@@ -19,13 +19,13 @@ local project = p.project
 local wks, prj
 
 function suite.setup()
-    wks, prj = test.createWorkspace()
+	wks, prj = test.createWorkspace()
 end
 
 local function prepare(calls)
-    local cfg = test.getconfig(prj, "Debug")
-    local toolset = p.tools.gcc
-    gmake2.cpp.includes(cfg, toolset)
+	local cfg = test.getconfig(prj, "Debug")
+	local toolset = p.tools.gcc
+	gmake2.cpp.includes(cfg, toolset)
 end
 
 
@@ -34,9 +34,9 @@ end
 --
 
 function suite.includeDirsAfter()
-    includedirsafter { 'DirAfter' }
-    prepare()
-    test.capture [[
+	includedirsafter { 'DirAfter' }
+	prepare()
+	test.capture [[
 INCLUDES += -idirafter DirAfter
     ]]
 end

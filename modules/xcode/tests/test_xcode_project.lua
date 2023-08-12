@@ -1971,7 +1971,7 @@
 		]]
 	end
 
-    function suite.XCBuildConfigurationTarget_OnOSXMinVersion()
+	function suite.XCBuildConfigurationTarget_OnOSXMinVersion()
 		_TARGET_OS = "macosx"
 		systemversion "10.11"
 		prepare()
@@ -1993,7 +1993,7 @@
 		]]
 	end
 
-    function suite.XCBuildConfigurationTarget_OnOSXUnSpecificedVersion()
+	function suite.XCBuildConfigurationTarget_OnOSXUnSpecificedVersion()
 		_TARGET_OS = "macosx"
 		-- systemversion "10.11"
 		prepare()
@@ -3572,9 +3572,9 @@
 			name = Debug;
 		};
 		]]
-    end
+	end
 
-    function suite.XCBuildConfigurationProject_OnCpp11()
+	function suite.XCBuildConfigurationProject_OnCpp11()
 		workspace("MyWorkspace")
 		cppdialect("C++11")
 		prepare()
@@ -3650,9 +3650,9 @@
 			name = Debug;
 		};
 		]]
-    end
+	end
 
-    function suite.XCBuildConfigurationProject_OnCpp1y()
+	function suite.XCBuildConfigurationProject_OnCpp1y()
 		workspace("MyWorkspace")
 		cppdialect("C++1y")
 		prepare()
@@ -3702,9 +3702,9 @@
 			name = Debug;
 		};
 		]]
-    end
+	end
 
-    function suite.XCBuildConfigurationProject_OnCpp1z()
+	function suite.XCBuildConfigurationProject_OnCpp1z()
 		workspace("MyWorkspace")
 		cppdialect("C++1z")
 		prepare()
@@ -3754,9 +3754,9 @@
 			name = Debug;
 		};
 		]]
-    end
+	end
 
-    function suite.XCBuildConfigurationProject_OnCpp2a()
+	function suite.XCBuildConfigurationProject_OnCpp2a()
 		workspace("MyWorkspace")
 		cppdialect("C++2a")
 		prepare()
@@ -3884,9 +3884,9 @@
 			name = Debug;
 		};
 		]]
-    end
+	end
 
-    function suite.XCBuildConfigurationProject_OnCppGnu0x()
+	function suite.XCBuildConfigurationProject_OnCppGnu0x()
 		workspace("MyWorkspace")
 		cppdialect("gnu++0x")
 		prepare()
@@ -3936,9 +3936,9 @@
 			name = Debug;
 		};
 		]]
-    end
+	end
 
-    function suite.XCBuildConfigurationProject_OnCppGnu1y()
+	function suite.XCBuildConfigurationProject_OnCppGnu1y()
 		workspace("MyWorkspace")
 		cppdialect("gnu++1y")
 		prepare()
@@ -3988,9 +3988,9 @@
 			name = Debug;
 		};
 		]]
-    end
+	end
 
-    function suite.XCBuildConfigurationProject_OnCppGnu1z()
+	function suite.XCBuildConfigurationProject_OnCppGnu1z()
 		workspace("MyWorkspace")
 		cppdialect("gnu++1z")
 		prepare()
@@ -4040,9 +4040,9 @@
 			name = Debug;
 		};
 		]]
-    end
+	end
 
-    function suite.XCBuildConfigurationProject_OnCppGnu2a()
+	function suite.XCBuildConfigurationProject_OnCppGnu2a()
 		workspace("MyWorkspace")
 		cppdialect("gnu++2a")
 		prepare()
