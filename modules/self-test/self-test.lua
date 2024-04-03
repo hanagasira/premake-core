@@ -61,6 +61,11 @@
 			tests = table.join(tests, _tests)
 		end
 
+		if _OPTIONS["test-list"] ~= nil then
+			m.collectTest(tests)
+			return
+		end
+
 		local passed, failed = m.runTest(tests)
 
 		if failed > 0 then
