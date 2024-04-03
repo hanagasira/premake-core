@@ -13,6 +13,27 @@
 
 	local _ = {}
 
+	function m.collectTest(tests)
+		local suites = m.getSuites()
+		local suitesKeys, suiteTestsKeys, totalTestCount = _.preprocessTests(suites, tests)
+
+		for index, suiteName in ipairs(suitesKeys) do
+		  suite = suites[suiteName]
+			if not m.isSuppressed(suiteName) then
+				local test = {
+					suiteName = suiteName,
+					suite = suite
+				}
+
+				print(suiteName)
+				local keys = suiteTestsKeys[suiteName]
+				for index, testName in ipairs(keys) do
+					print(string.format("%s.%s", suiteName, testName))
+				end
+
+			end
+		end
+	end
 
 
 	function m.runTest(tests)

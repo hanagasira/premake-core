@@ -72,6 +72,12 @@
 
 
 	newoption {
+		trigger = "test-list",
+		description = "When testing, run only the specified suite or test"
+	}
+
+
+	newoption {
 		trigger = "to",
 		value   = "path",
 		description = "Set the output location for the generated files"
