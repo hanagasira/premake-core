@@ -69,11 +69,16 @@ if http ~= nil and _OPTIONS["test-all"] then
 		prepare()
 		test.capture [[
 <ImportGroup Label="ExtensionTargets">
-	<Import Project="packages\boost.1.59.0-b1\build\native\boost.targets" Condition="Exists('packages\boost.1.59.0-b1\build\native\boost.targets')" />
-	<Import Project="packages\sdl2.v140.2.0.3\build\native\sdl2.v140.targets" Condition="Exists('packages\sdl2.v140.2.0.3\build\native\sdl2.v140.targets')" />
-	<Import Project="packages\sdl2.v140.redist.2.0.3\build\native\sdl2.v140.redist.targets" Condition="Exists('packages\sdl2.v140.redist.2.0.3\build\native\sdl2.v140.redist.targets')" />
-	<Import Project="packages\WinPixEventRuntime.1.0.220810001\build\WinPixEventRuntime.targets" Condition="Exists('packages\WinPixEventRuntime.1.0.220810001\build\WinPixEventRuntime.targets')" />
-	<Import Project="packages\Microsoft.Direct3D.D3D12.1.608.2\build\native\Microsoft.Direct3D.D3D12.targets" Condition="Exists('packages\Microsoft.Direct3D.D3D12.1.608.2\build\native\Microsoft.Direct3D.D3D12.targets')" />
+	<Import Project="packages\boost.1.59.0-b1\build\native\boost.targets" Condition="Exists('packages\boost.1.59.0-b1\build\native\boost.targets') and '$(Configuration)|$(Platform)' == 'Debug|Win32'" />
+	<Import Project="packages\sdl2.v140.2.0.3\build\native\sdl2.v140.targets" Condition="Exists('packages\sdl2.v140.2.0.3\build\native\sdl2.v140.targets') and '$(Configuration)|$(Platform)' == 'Debug|Win32'" />
+	<Import Project="packages\sdl2.v140.redist.2.0.3\build\native\sdl2.v140.redist.targets" Condition="Exists('packages\sdl2.v140.redist.2.0.3\build\native\sdl2.v140.redist.targets') and '$(Configuration)|$(Platform)' == 'Debug|Win32'" />
+	<Import Project="packages\WinPixEventRuntime.1.0.220810001\build\WinPixEventRuntime.targets" Condition="Exists('packages\WinPixEventRuntime.1.0.220810001\build\WinPixEventRuntime.targets') and '$(Configuration)|$(Platform)' == 'Debug|Win32'" />
+	<Import Project="packages\Microsoft.Direct3D.D3D12.1.608.2\build\native\Microsoft.Direct3D.D3D12.targets" Condition="Exists('packages\Microsoft.Direct3D.D3D12.1.608.2\build\native\Microsoft.Direct3D.D3D12.targets') and '$(Configuration)|$(Platform)' == 'Debug|Win32'" />
+	<Import Project="packages\boost.1.59.0-b1\build\native\boost.targets" Condition="Exists('packages\boost.1.59.0-b1\build\native\boost.targets') and '$(Configuration)|$(Platform)' == 'Release|Win32'" />
+	<Import Project="packages\sdl2.v140.2.0.3\build\native\sdl2.v140.targets" Condition="Exists('packages\sdl2.v140.2.0.3\build\native\sdl2.v140.targets') and '$(Configuration)|$(Platform)' == 'Release|Win32'" />
+	<Import Project="packages\sdl2.v140.redist.2.0.3\build\native\sdl2.v140.redist.targets" Condition="Exists('packages\sdl2.v140.redist.2.0.3\build\native\sdl2.v140.redist.targets') and '$(Configuration)|$(Platform)' == 'Release|Win32'" />
+	<Import Project="packages\WinPixEventRuntime.1.0.220810001\build\WinPixEventRuntime.targets" Condition="Exists('packages\WinPixEventRuntime.1.0.220810001\build\WinPixEventRuntime.targets') and '$(Configuration)|$(Platform)' == 'Release|Win32'" />
+	<Import Project="packages\Microsoft.Direct3D.D3D12.1.608.2\build\native\Microsoft.Direct3D.D3D12.targets" Condition="Exists('packages\Microsoft.Direct3D.D3D12.1.608.2\build\native\Microsoft.Direct3D.D3D12.targets') and '$(Configuration)|$(Platform)' == 'Release|Win32'" />
 </ImportGroup>
 		]]
 	end

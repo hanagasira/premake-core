@@ -38,8 +38,10 @@ if http ~= nil and _OPTIONS["test-all"] then
 		prepare()
 	test.capture [[
 <ImportGroup Label="ExtensionSettings">
-	<Import Project="packages\Microsoft.Direct3D.D3D12.1.608.2\build\native\Microsoft.Direct3D.D3D12.props" Condition="Exists('packages\Microsoft.Direct3D.D3D12.1.608.2\build\native\Microsoft.Direct3D.D3D12.props')" />
-	<Import Project="packages\python.3.13.2\build\native\python.props" Condition="Exists('packages\python.3.13.2\build\native\python.props')" />
+	<Import Project="packages\Microsoft.Direct3D.D3D12.1.608.2\build\native\Microsoft.Direct3D.D3D12.props" Condition="Exists('packages\Microsoft.Direct3D.D3D12.1.608.2\build\native\Microsoft.Direct3D.D3D12.props') and '$(Configuration)|$(Platform)' == 'Debug|Win32'" />
+	<Import Project="packages\Microsoft.Direct3D.D3D12.1.608.2\build\native\Microsoft.Direct3D.D3D12.props" Condition="Exists('packages\Microsoft.Direct3D.D3D12.1.608.2\build\native\Microsoft.Direct3D.D3D12.props') and '$(Configuration)|$(Platform)' == 'Release|Win32'" />
+	<Import Project="packages\python.3.13.2\build\native\python.props" Condition="Exists('packages\python.3.13.2\build\native\python.props') and '$(Configuration)|$(Platform)' == 'Debug|Win32'" />
+	<Import Project="packages\python.3.13.2\build\native\python.props" Condition="Exists('packages\python.3.13.2\build\native\python.props') and '$(Configuration)|$(Platform)' == 'Release|Win32'" />
 </ImportGroup>
 		]]
 	end

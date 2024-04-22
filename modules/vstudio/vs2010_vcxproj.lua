@@ -2699,10 +2699,12 @@
 
 	function m.importNuGetTargets(prj)
 		if not vstudio.nuget2010.supportsPackageReferences(prj) then
-			for i = 1, #prj.nuget do
-				local targetsFile = nuGetTargetsFile(prj, prj.nuget[i], ".targets")
-				if targetsFile then
-					p.x('<Import Project="%s" Condition="Exists(\'%s\')" />', targetsFile, targetsFile)
+			for cfg in project.eachconfig(prj) do
+				for i = 1, #cfg.nuget do
+					local targetsFile = nuGetTargetsFile(prj, cfg.nuget[i], ".targets")
+					if targetsFile then
+						p.x('<Import Project="%s" Condition="Exists(\'%s\') and \'$(Configuration)|$(Platform)\' == \'%s\'" />', targetsFile, targetsFile, vstudio.projectConfig(cfg))
+					end
 				end
 			end
 		end
@@ -2723,6 +2725,18 @@
 			p.x('<ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>')
 			p.pop('</PropertyGroup>')
 
+			-- for cfg in project.eachconfig(prj) do
+			-- 	for i = 1, #cfg.nuget do
+			-- 		local propsFile = nuGetTargetsFile(prj, prj.nuget[i], ".props")
+			-- 		if propsFile then
+			-- 			p.x('<Error Condition="!Exists(\'%s\')" Text="$([System.String]::Format(\'$(ErrorText)\', \'%s\'))" />', propsFile, propsFile, vstudio.projectConfig(cfg))
+			-- 		end
+			-- 		local targetsFile = nuGetTargetsFile(prj, prj.nuget[i], ".targets")
+			-- 		if targetsFile then
+			-- 			p.x('<Error Condition="!Exists(\'%s\')" Text="$([System.String]::Format(\'$(ErrorText)\', \'%s\'))" />', targetsFile, targetsFile, vstudio.projectConfig(cfg))
+			-- 		end
+			-- 	end
+			-- end
 			for i = 1, #prj.nuget do
 				local propsFile = nuGetTargetsFile(prj, prj.nuget[i], ".props")
 				if propsFile then
@@ -2733,6 +2747,7 @@
 					p.x('<Error Condition="!Exists(\'%s\')" Text="$([System.String]::Format(\'$(ErrorText)\', \'%s\'))" />', targetsFile, targetsFile)
 				end
 			end
+
 			p.pop('</Target>')
 		end
 	end
@@ -2785,10 +2800,13 @@
 
 	function m.importNuGetProps(prj)
 		if not vstudio.nuget2010.supportsPackageReferences(prj) then
-			for i = 1, #prj.nuget do
-				local propsFile = nuGetTargetsFile(prj, prj.nuget[i], ".props")
-				if propsFile then
-					p.x('<Import Project="%s" Condition="Exists(\'%s\')" />', propsFile, propsFile)
+			for cfg in project.eachconfig(prj) do
+				for i = 1, #cfg.nuget do
+					local propsFile = nuGetTargetsFile(prj, prj.nuget[i], ".props")
+					if propsFile then
+						-- p.x('<Import Project="%s" Condition="Exists(\'%s\')" />', propsFile, propsFile, vstudio.projectConfig(cfg))
+						p.x('<Import Project="%s" Condition="Exists(\'%s\') and \'$(Configuration)|$(Platform)\' == \'%s\'" />', propsFile, propsFile, vstudio.projectConfig(cfg))
+					end
 				end
 			end
 		end
