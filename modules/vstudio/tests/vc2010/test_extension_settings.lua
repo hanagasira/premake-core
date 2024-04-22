@@ -38,7 +38,8 @@ if _OPTIONS["test-all"] then
 		prepare()
 	test.capture [[
 <ImportGroup Label="ExtensionSettings">
-	<Import Project="packages\Microsoft.Direct3D.D3D12.1.608.2\build\native\Microsoft.Direct3D.D3D12.props" Condition="Exists('packages\Microsoft.Direct3D.D3D12.1.608.2\build\native\Microsoft.Direct3D.D3D12.props')" />
+	<Import Project="packages\Microsoft.Direct3D.D3D12.1.608.2\build\native\Microsoft.Direct3D.D3D12.props" Condition="Exists('packages\Microsoft.Direct3D.D3D12.1.608.2\build\native\Microsoft.Direct3D.D3D12.props') and '$(Configuration)|$(Platform)' == 'Debug|Win32'" />
+	<Import Project="packages\Microsoft.Direct3D.D3D12.1.608.2\build\native\Microsoft.Direct3D.D3D12.props" Condition="Exists('packages\Microsoft.Direct3D.D3D12.1.608.2\build\native\Microsoft.Direct3D.D3D12.props') and '$(Configuration)|$(Platform)' == 'Release|Win32'" />
 </ImportGroup>
 		]]
 	end
