@@ -24,8 +24,19 @@
 	end
 
 	function nuget2010.packageVersion(package)
-		return package:sub(package:find(":") + 1, -1)
+		local first_index = package:find(":") + 1
+		local second_index = package:find(":", first_index) or -1
+		return package:sub(first_index, second_index)
 	end
+
+	-- function nuget2010.packageSource(package)
+	-- 	local first_index = package:find(":")
+	-- 	local second_index = package:find(":", first_index) or -1
+	-- 	if second_index == -1 then
+	-- 		return "https://api.nuget.org/v3/index.json"
+	-- 	end
+	-- 	return package:sub(second_index + 1, -1)
+	-- end
 
 	function nuget2010.packageFramework(prj)
 		if p.project.isdotnet(prj) then
@@ -135,13 +146,14 @@
 		-- instead.
 
 		if not packageAPIInfos[package] then
-			if not packageSourceInfos[prj.nugetsource] then
+			local nugetsource = prj.nugetsource
+			if not packageSourceInfos[nugetsource] then
 				local packageSourceInfo = {}
 
-				printf("Examining NuGet package source '%s'...", prj.nugetsource)
+				printf("Examining NuGet package source '%s'...", nugetsource)
 				io.flush()
 
-				local response, err, code = http.get(prj.nugetsource)
+				local response, err, code = http.get(nugetsource)
 
 				if err ~= "OK" then
 					p.error("NuGet API error (%d)\n%s", code, err)
@@ -182,17 +194,17 @@
 				end
 
 				if not catalog then
-					if prj.nugetsource == "https://api.nuget.org/v3/index.json" then
+					if nugetsource == "https://api.nuget.org/v3/index.json" then
 						p.error("Failed to understand NuGet API response (no Catalog resource)")
 					else
-						p.error("Package source is not a NuGet gallery - non-gallery sources are currently unsupported", prj.nugetsource, prj.name)
+						p.error("Package source is not a NuGet gallery - non-gallery sources are currently unsupported", nugetsource, prj.name)
 					end
 				end
 
 				packageSourceInfo.packageDisplayMetadataUriTemplate = packageDisplayMetadataUriTemplate
 				packageSourceInfo.catalog = catalog
 
-				packageSourceInfos[prj.nugetsource] = packageSourceInfo
+				packageSourceInfos[nugetsource] = packageSourceInfo
 			end
 
 			local packageAPIInfo = {}
@@ -200,7 +212,7 @@
 			printf("Examining NuGet package '%s'...", id)
 			io.flush()
 
-			local response, err, code = http.get(packageSourceInfos[prj.nugetsource].packageDisplayMetadataUriTemplate["@id"]:gsub("{id%-lower}", id:lower()))
+			local response, err, code = http.get(packageSourceInfos[nugetsource].packageDisplayMetadataUriTemplate["@id"]:gsub("{id%-lower}", id:lower()))
 
 			if err ~= "OK" then
 				if code == 404 then
@@ -368,6 +380,8 @@
 		if #prj.nuget == 0 then
 			return
 		end
+		-- https://learn.microsoft.com/en-us/nuget/reference/nuget-config-file#packagesources
+		-- https://learn.microsoft.com/en-us/nuget/reference/nuget-config-file#package-source-mapping-section
 
 		if prj.nugetsource == "https://api.nuget.org/v3/index.json" then
 			return
