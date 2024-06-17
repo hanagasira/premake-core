@@ -2654,8 +2654,14 @@
 		return {
 			m.importGroupTargets,
 			m.importRuleTargets,
-			m.importNuGetTargets,
+			-- m.importNuGetTargets,
 			m.importBuildCustomizationsTargets
+		}
+	end
+
+	m.elements.importConfigExtensionTargets = function(cfg)
+		return {
+			m.importNuGetTargets,
 		}
 	end
 
@@ -2663,6 +2669,12 @@
 		p.push('<ImportGroup Label="ExtensionTargets">')
 		p.callArray(m.elements.importExtensionTargets, prj)
 		p.pop('</ImportGroup>')
+
+		for cfg in project.eachconfig(prj) do
+			p.push('<ImportGroup Label="ExtensionTargets" %s>', m.condition(cfg))
+			p.callArray(m.elements.importConfigExtensionTargets, prj)
+			p.pop('</ImportGroup>')
+		end
 	end
 
 	function m.importGroupTargets(prj)
@@ -2697,15 +2709,32 @@
 		return nil
 	end
 
-	function m.importNuGetTargets(prj)
-		if not vstudio.nuget2010.supportsPackageReferences(prj) then
-			for cfg in project.eachconfig(prj) do
-				for i = 1, #cfg.nuget do
-					local targetsFile = nuGetTargetsFile(prj, cfg.nuget[i], ".targets")
-					if targetsFile then
-						p.x('<Import Project="%s" Condition="Exists(\'%s\') and \'$(Configuration)|$(Platform)\' == \'%s\'" />', targetsFile, targetsFile, vstudio.projectConfig(cfg))
-					end
-				end
+	-- function m.importNuGetTargets(prj)
+	-- 	if not vstudio.nuget2010.supportsPackageReferences(prj) then
+	-- 		-- for i = 1, #prj.nuget do
+	-- 		-- 	local propsFile = nuGetTargetsFile(prj, prj.nuget[i], ".props")
+	-- 		-- 	if propsFile then
+	-- 		-- 		p.x('<Import Project="%s" Condition="Exists(\'%s\')" />', propsFile, propsFile)
+	-- 		-- 	end
+	-- 		-- end
+
+	-- 		for cfg in project.eachconfig(prj) do
+	-- 			for i = 1, #cfg.nuget do
+	-- 				local targetsFile = nuGetTargetsFile(prj, cfg.nuget[i], ".targets")
+	-- 				if targetsFile then
+	-- 					p.x('<Import Project="%s" Condition="Exists(\'%s\') and \'$(Configuration)|$(Platform)\' == \'%s\'" />', targetsFile, targetsFile, vstudio.projectConfig(cfg))
+	-- 				end
+	-- 			end
+	-- 		end
+	-- 	end
+	-- end
+
+	function m.importNuGetTargets(cfg)
+		for i = 1, #cfg.nuget do
+			local targetsFile = nuGetTargetsFile(prj, cfg.nuget[i], ".targets")
+			if targetsFile then
+				-- p.x('<Import Project="%s" Condition="Exists(\'%s\') and \'$(Configuration)|$(Platform)\' == \'%s\'" />', targetsFile, targetsFile, vstudio.projectConfig(cfg))
+				p.x('<Import Project="%s" Condition="Exists(\'%s\')" />', targetsFile, targetsFile)
 			end
 		end
 	end

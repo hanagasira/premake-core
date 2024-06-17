@@ -146,6 +146,8 @@
 		-- instead.
 
 		if not packageAPIInfos[package] then
+			-- ここでsln作成場所から見たNuget.Configファイルを開いて指定された場所を探す処理が必要になる
+			-- https://learn.microsoft.com/ja-jp/nuget/reference/nuget-config-file
 			local nugetsource = prj.nugetsource
 			if not packageSourceInfos[nugetsource] then
 				local packageSourceInfo = {}
