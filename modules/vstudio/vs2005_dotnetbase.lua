@@ -9,6 +9,8 @@
 
 	local vstudio = p.vstudio
 	local vs2005 = p.vstudio.vs2005
+	-- この時点ではnullになってしまう模様
+	-- local vc2010 = p.vstudio.vc2010
 	local dotnetbase  = p.vstudio.dotnetbase
 	local project = p.project
 	local config = p.config
@@ -81,6 +83,15 @@
 		_p(1,'</PropertyGroup>')
 	end
 
+	function dotnetbase.importExtensionTargets(prj)
+		if next(prj.rules) == nil then
+			return
+		end
+		p.push('<ImportGroup Label="ExtensionTargets">')
+		p.vstudio.vc2010.importRuleTargets(prj)
+		p.pop('</ImportGroup>')
+	end
+
 --
 -- Write the available configurations to have correct configuration mapping on vs2022 format and later.
 --
@@ -105,6 +116,13 @@
 		_p(1,'</PropertyGroup>')
 	end
 
+	function dotnetbase.itemDefinitionGroup(prj)
+		for cfg in project.eachconfig(prj) do
+			p.push('<ItemDefinitionGroup %s>', p.vstudio.vc2010.condition(cfg))
+			p.vstudio.vc2010.ruleVars(cfg)
+			p.pop('</ItemDefinitionGroup>')
+		end
+	end
 
 	function dotnetbase.dofile(node, cfg, condition)
 		local filecfg = fileconfig.getconfig(node, cfg)
@@ -165,6 +183,17 @@
 				end
 				if #contents > 0 then
 					_p("%s", contents)
+				end
+				local rule = p.global.getRuleForFile(filecfg.name, filecfg.project.rules)
+				if rule then
+					for prop in p.rule.eachProperty(rule) do
+						-- print(prop.name)
+						local fld = p.rule.getPropertyField(rule, prop)
+						local value = p.vstudio.vc2010.getRulePropertyString(rule, prop, filecfg[fld.name])
+						if value ~= '' and value ~= 'nil' then
+							_p(3,"<%s>%s</%s>", prop.name, value, prop.name)
+						end
+					end
 				end
 				_p(2,'</%s>', info.action)
 			else
@@ -854,4 +883,14 @@
 		if cfg.clr == "Unsafe" then
 			_p(2,'<AllowUnsafeBlocks>true</AllowUnsafeBlocks>')
 		end
+	end
+
+
+	function dotnetbase.importExtensionSettings(prj)
+		if next(prj.rules) == nil then
+			return
+		end
+		p.push('<ImportGroup Label="ExtensionSettings">')
+		p.vstudio.vc2010.importRuleSettings(prj)
+		p.pop('</ImportGroup>')
 	end

@@ -22,7 +22,9 @@
 			return {
 				dotnetbase.projectElement,
 				dotnetbase.projectProperties,
+				dotnetbase.importExtensionSettings,
 				dotnetbase.configurations,
+				dotnetbase.itemDefinitionGroup,
 				dotnetbase.applicationIcon,
 				dotnetbase.references
 			}
@@ -32,7 +34,9 @@
 				dotnetbase.projectElement,
 				dotnetbase.commonProperties,
 				dotnetbase.projectProperties,
+				dotnetbase.importExtensionSettings,
 				dotnetbase.configurations,
+				dotnetbase.itemDefinitionGroup,
 				dotnetbase.applicationIcon,
 				dotnetbase.references
 			}
@@ -106,4 +110,5 @@
 			_p(1,'</Target>')
 			_p(1,'-->')
 		end
+		dotnetbase.importExtensionTargets(prj)
 	end

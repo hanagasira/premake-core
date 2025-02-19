@@ -78,6 +78,11 @@
 			info.action = "None"
 		end
 
+		local rule = p.global.getRuleForFile(fcfg.name, fcfg.project.rules)
+		if rule ~= nil then
+			info.action = rule.name
+		end
+
 		-- Try to work out any subtypes, based on the files in the project
 
 		if info.action == "Compile" and fname:endswith(".cs") then
