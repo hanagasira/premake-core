@@ -65,7 +65,13 @@
 				return
 			end
 
-			local cachePath = path.translate(path.join(os.getenv("userprofile"), ".nuget/packages", id))
+			-- https://learn.microsoft.com/en-us/nuget/consume-packages/managing-the-global-packages-and-cache-folders
+			local package_folder = os.getenv("nuget_packages")
+			if package_folder == nil then
+				package_folder = path.join(os.getenv("userprofile"), ".nuget/packages")
+			end
+
+			local cachePath = path.translate(path.join(package_folder, id))
 
 			if os.isdir(cachePath) then
 				local packageAPIInfo = {}
