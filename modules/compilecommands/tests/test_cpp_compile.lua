@@ -13,7 +13,7 @@
 	local getstructuredimplicitincludedirs = nil
 
 	local wks, prj
-	
+
 	function suite.setup()
 		-- Replace the getstructuredimplicitincludedirs function with a stub that returns an empty table to ensure consistent test results
 		-- This is necessary because the actual function may return different results based on the environment, which can cause tests to fail unpredictably
@@ -61,7 +61,7 @@
 		test.isequal(expected, args)
 	end
 
-	
+
 	function suite.compile_multiple_files()
 		toolset "clang"
 		files { "hello.cpp", "world.cpp" }
@@ -220,7 +220,7 @@
 
 			usage "INTERFACE"
 				externalincludedirs { "prj2/interface_external_include" }
-		
+
 		project "prj"
 			uses { "prj2" }
 			files { "hello.cpp" }
@@ -273,6 +273,36 @@
 					path.getabsolute("obj/Debug/hello.o"),
 				},
 				output = path.getabsolute("obj/Debug/hello.o"),
+			}
+		}
+
+		test.isequal(expected, args)
+	end
+
+
+	function suite.compile_with_cs_mixed_prj()
+		project "prj_cs"
+			language "C#"
+			files { "hello.cs" }
+
+		project "prj_cpp"
+			language "C++"
+			files { "hello.cpp" }
+
+		local cfg = prepare()
+		local args = compilecommands.generate(wks, "Debug", "")
+
+		local expected = {
+			{
+				directory = path.getabsolute(prj.location),
+				file = path.getabsolute("hello.cpp"),
+				arguments = {
+					"clang++",
+					path.getabsolute("hello.cpp"),
+					"-o",
+					path.getabsolute("obj/Debug/prj_cpp/hello.o"),
+				},
+				output = path.getabsolute("obj/Debug/prj_cpp/hello.o"),
 			}
 		}
 
